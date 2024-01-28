@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_WeddingRestaurant" Class="DB_WeddingRestaurantDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.[__EFMigrationsHistory]" Member="__EFMigrationsHistories">
+    <Type Name="__EFMigrationsHistory">
+      <Column Name="MigrationId" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductVersion" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AccessToken" Member="AccessTokens">
+    <Type Name="AccessToken">
+      <Column Name="Token" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="StrTokenIDToken" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="IsUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsRevoked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ExpireAt" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="NguoiDung_AccessToken" Member="NguoiDung" ThisKey="userName" OtherKey="userName" Type="NguoiDung" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Token_AccessToken" Member="Token1" ThisKey="StrTokenIDToken" OtherKey="IDToken" Type="Token" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDichVuTinhPhi" Member="ChiTietDichVuTinhPhis">
+    <Type Name="ChiTietDichVuTinhPhi">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaDichVuTinhPhi" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_ChiTietDichVuTinhPhi" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DichVuTinhPhi_ChiTietDichVuTinhPhi" Member="DichVuTinhPhi" ThisKey="MaDichVuTinhPhi" OtherKey="MaDichVuTinhPhi" Type="DichVuTinhPhi" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDichVuUuDai" Member="ChiTietDichVuUuDais">
+    <Type Name="ChiTietDichVuUuDai">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaDichVuUuDai" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_ChiTietDichVuUuDai" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DichVuUuDai_ChiTietDichVuUuDai" Member="DichVuUuDai" ThisKey="MaDichVuUuDai" OtherKey="MaDichVuUuDai" Type="DichVuUuDai" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietMenu" Member="ChiTietMenus">
+    <Type Name="ChiTietMenu">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaMenu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuongMenuCuaTiec" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TongTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_ChiTietMenu" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Menu_ChiTietMenu" Member="Menu" ThisKey="MaMenu" OtherKey="MaMenu" Type="Menu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietNuocUong" Member="ChiTietNuocUongs">
+    <Type Name="ChiTietNuocUong">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaNuoc" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TongTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_ChiTietNuocUong" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Nuoc_ChiTietNuocUong" Member="Nuoc" ThisKey="MaNuoc" OtherKey="MaNuoc" Type="Nuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietPhuThuDichVu" Member="ChiTietPhuThuDichVus">
+    <Type Name="ChiTietPhuThuDichVu">
+      <Column Name="MaPhuThu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaDichVuTinhPhi" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DichVuTinhPhi_ChiTietPhuThuDichVu" Member="DichVuTinhPhi" ThisKey="MaDichVuTinhPhi" OtherKey="MaDichVuTinhPhi" Type="DichVuTinhPhi" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="PhuThu_ChiTietPhuThuDichVu" Member="PhuThu" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="PhuThu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietPhuThuMonAn" Member="ChiTietPhuThuMonAns">
+    <Type Name="ChiTietPhuThuMonAn">
+      <Column Name="MaPhuThu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaMonAn" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="MonAn_ChiTietPhuThuMonAn" Member="MonAn" ThisKey="MaMonAn" OtherKey="MaMonAn" Type="MonAn" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="PhuThu_ChiTietPhuThuMonAn" Member="PhuThu" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="PhuThu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietPhuThuNuoc" Member="ChiTietPhuThuNuocs">
+    <Type Name="ChiTietPhuThuNuoc">
+      <Column Name="MaPhuThu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaNuoc" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ThanhTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Nuoc_ChiTietPhuThuNuoc" Member="Nuoc" ThisKey="MaNuoc" OtherKey="MaNuoc" Type="Nuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="PhuThu_ChiTietPhuThuNuoc" Member="PhuThu" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="PhuThu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DanhGia" Member="DanhGias">
+    <Type Name="DanhGia">
+      <Column Name="MaDanhGia" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NoiDungDanhGia" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MaKhachHang" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="KhachHang_DanhGia" Member="KhachHang" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="KhachHang" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DatTiec" Member="DatTiecs">
+    <Type Name="DatTiec">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoaiHinhTiec" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayDatTiec" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="NgayToChuc" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ThoiGianToChuc" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongBanChinhThuc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongBanTang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongBanChay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongBanDuPhong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TongBanSetup" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoaiBan" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PhiDichVu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TongTienDuKien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TongTienGiam" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TongTienPhaiTra" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TienCocLan1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TienCocLan2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaKhachHang" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_ChiTietDichVuTinhPhi" Member="ChiTietDichVuTinhPhis" ThisKey="MaTiec" OtherKey="MaTiec" Type="ChiTietDichVuTinhPhi" />
+      <Association Name="DatTiec_ChiTietDichVuUuDai" Member="ChiTietDichVuUuDais" ThisKey="MaTiec" OtherKey="MaTiec" Type="ChiTietDichVuUuDai" />
+      <Association Name="DatTiec_ChiTietMenu" Member="ChiTietMenus" ThisKey="MaTiec" OtherKey="MaTiec" Type="ChiTietMenu" />
+      <Association Name="DatTiec_ChiTietNuocUong" Member="ChiTietNuocUongs" ThisKey="MaTiec" OtherKey="MaTiec" Type="ChiTietNuocUong" />
+      <Association Name="DatTiec_HoaDon" Member="HoaDons" ThisKey="MaTiec" OtherKey="MaTiec" Type="HoaDon" />
+      <Association Name="DatTiec_LichSanhTiec" Member="LichSanhTiecs" ThisKey="MaTiec" OtherKey="MaTiec" Type="LichSanhTiec" />
+      <Association Name="DatTiec_NhanVienTrongTiec" Member="NhanVienTrongTiecs" ThisKey="MaTiec" OtherKey="MaTiec" Type="NhanVienTrongTiec" />
+      <Association Name="KhachHang_DatTiec" Member="KhachHang" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="KhachHang" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DichVu" Member="DichVus">
+    <Type Name="DichVu">
+      <Column Name="MaDichVu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenDichVu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaLoaiDichVu" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DieuKienBanToiThieu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GiaGiam30" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="GiaLe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="GiaTronGoi" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="DieuKienBanToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DichVu_DichVuTinhPhi" Member="DichVuTinhPhis" ThisKey="MaDichVu" OtherKey="MaDichVu" Type="DichVuTinhPhi" />
+      <Association Name="DichVu_DichVuUuDai" Member="DichVuUuDais" ThisKey="MaDichVu" OtherKey="MaDichVu" Type="DichVuUuDai" />
+      <Association Name="LoaiDichVu_DichVu" Member="LoaiDichVu" ThisKey="MaLoaiDichVu" OtherKey="MaLoaiDichVu" Type="LoaiDichVu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DichVuTinhPhi" Member="DichVuTinhPhis">
+    <Type Name="DichVuTinhPhi">
+      <Column Name="MaDichVuTinhPhi" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenDichVu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GiaTronGoi" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaDichVu" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DieuKienBanToiThieu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GiaGiam30" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="GiaLe" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="DieuKienBanToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DichVuTinhPhi_ChiTietDichVuTinhPhi" Member="ChiTietDichVuTinhPhis" ThisKey="MaDichVuTinhPhi" OtherKey="MaDichVuTinhPhi" Type="ChiTietDichVuTinhPhi" />
+      <Association Name="DichVuTinhPhi_ChiTietPhuThuDichVu" Member="ChiTietPhuThuDichVus" ThisKey="MaDichVuTinhPhi" OtherKey="MaDichVuTinhPhi" Type="ChiTietPhuThuDichVu" />
+      <Association Name="DichVu_DichVuTinhPhi" Member="DichVu" ThisKey="MaDichVu" OtherKey="MaDichVu" Type="DichVu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DichVuUuDai" Member="DichVuUuDais">
+    <Type Name="DichVuUuDai">
+      <Column Name="MaDichVuUuDai" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenDichVu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DieuKienBanToiThieu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaDichVu" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DieuKienBanToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DichVuUuDai_ChiTietDichVuUuDai" Member="ChiTietDichVuUuDais" ThisKey="MaDichVuUuDai" OtherKey="MaDichVuUuDai" Type="ChiTietDichVuUuDai" />
+      <Association Name="DichVu_DichVuUuDai" Member="DichVu" ThisKey="MaDichVu" OtherKey="MaDichVu" Type="DichVu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="MaHoaDon" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayLap" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TongTienPhuThu" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="TongTienThanhToan" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="HoaDon_PhuThu" Member="PhuThus" ThisKey="MaHoaDon" OtherKey="MaHoaDon" Type="PhuThu" />
+      <Association Name="DatTiec_HoaDon" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="MaKhachHang" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenKhachHang" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CCCD" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gmail" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="KhachHang_DanhGia" Member="DanhGias" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="DanhGia" />
+      <Association Name="KhachHang_DatTiec" Member="DatTiecs" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="DatTiec" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LichSanhTiec" Member="LichSanhTiecs">
+    <Type Name="LichSanhTiec">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSanh" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayDienRa" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="Ca" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TienPhuThu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_LichSanhTiec" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Sanh_LichSanhTiec" Member="Sanh" ThisKey="MaSanh" OtherKey="MaSanh" Type="Sanh" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoaiDichVu" Member="LoaiDichVus">
+    <Type Name="LoaiDichVu">
+      <Column Name="MaLoaiDichVu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoaiDichVu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="LoaiDichVu_DichVu" Member="DichVus" ThisKey="MaLoaiDichVu" OtherKey="MaLoaiDichVu" Type="DichVu" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoaiMonAn" Member="LoaiMonAns">
+    <Type Name="LoaiMonAn">
+      <Column Name="MaLoaiMonAn" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoaiMon" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="LoaiMonAn_MonAn" Member="MonAns" ThisKey="MaLoaiMonAn" OtherKey="MaLoaiMonAn" Type="MonAn" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoaiNuoc" Member="LoaiNuocs">
+    <Type Name="LoaiNuoc">
+      <Column Name="MaLoaiNuoc" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoaiNuoc" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="LoaiNuoc_Nuoc" Member="Nuocs" ThisKey="MaLoaiNuoc" OtherKey="MaLoaiNuoc" Type="Nuoc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu" Member="Menus">
+    <Type Name="Menu">
+      <Column Name="MaMenu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenMenu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DonGiaMenu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Menu_ChiTietMenu" Member="ChiTietMenus" ThisKey="MaMenu" OtherKey="MaMenu" Type="ChiTietMenu" />
+      <Association Name="Menu_MonAnTrongMenu" Member="MonAnTrongMenus" ThisKey="MaMenu" OtherKey="MaMenu" Type="MonAnTrongMenu" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MonAn" Member="MonAns">
+    <Type Name="MonAn">
+      <Column Name="MaMonAn" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenMonAn" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DVT" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLoaiMonAn" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="MonAn_ChiTietPhuThuMonAn" Member="ChiTietPhuThuMonAns" ThisKey="MaMonAn" OtherKey="MaMonAn" Type="ChiTietPhuThuMonAn" />
+      <Association Name="MonAn_MonAnTrongMenu" Member="MonAnTrongMenus" ThisKey="MaMonAn" OtherKey="MaMonAn" Type="MonAnTrongMenu" />
+      <Association Name="LoaiMonAn_MonAn" Member="LoaiMonAn" ThisKey="MaLoaiMonAn" OtherKey="MaLoaiMonAn" Type="LoaiMonAn" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MonAnTrongMenu" Member="MonAnTrongMenus">
+    <Type Name="MonAnTrongMenu">
+      <Column Name="MaMenu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaMonAn" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuongMon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Menu_MonAnTrongMenu" Member="Menu" ThisKey="MaMenu" OtherKey="MaMenu" Type="Menu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="MonAn_MonAnTrongMenu" Member="MonAn" ThisKey="MaMonAn" OtherKey="MaMonAn" Type="MonAn" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NguoiDung" Member="NguoiDungs">
+    <Type Name="NguoiDung">
+      <Column Name="userName" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="quyen" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="hoTen" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="sdt" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="NguoiDung_AccessToken" Member="AccessTokens" ThisKey="userName" OtherKey="userName" Type="AccessToken" />
+      <Association Name="NguoiDung_RefreshToken" Member="RefreshTokens" ThisKey="userName" OtherKey="userName" Type="RefreshToken" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenNhanVien" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CCCD" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gmail" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayVaoLam" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayNghiViec" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="NhanVien_NhanVienTrongTiec" Member="NhanVienTrongTiecs" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NhanVienTrongTiec" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVienTrongTiec" Member="NhanVienTrongTiecs">
+    <Type Name="NhanVienTrongTiec">
+      <Column Name="MaTiec" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DatTiec_NhanVienTrongTiec" Member="DatTiec" ThisKey="MaTiec" OtherKey="MaTiec" Type="DatTiec" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="NhanVien_NhanVienTrongTiec" Member="NhanVien" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NhanVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nuoc" Member="Nuocs">
+    <Type Name="Nuoc">
+      <Column Name="MaNuoc" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenNuoc" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DVT" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaLoaiNuoc" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Nuoc_ChiTietNuocUong" Member="ChiTietNuocUongs" ThisKey="MaNuoc" OtherKey="MaNuoc" Type="ChiTietNuocUong" />
+      <Association Name="Nuoc_ChiTietPhuThuNuoc" Member="ChiTietPhuThuNuocs" ThisKey="MaNuoc" OtherKey="MaNuoc" Type="ChiTietPhuThuNuoc" />
+      <Association Name="LoaiNuoc_Nuoc" Member="LoaiNuoc" ThisKey="MaLoaiNuoc" OtherKey="MaLoaiNuoc" Type="LoaiNuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhuThu" Member="PhuThus">
+    <Type Name="PhuThu">
+      <Column Name="MaPhuThu" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoaiPhuThu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MoTaPhuThu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TongTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaHoaDon" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="PhuThu_ChiTietPhuThuDichVu" Member="ChiTietPhuThuDichVus" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="ChiTietPhuThuDichVu" />
+      <Association Name="PhuThu_ChiTietPhuThuMonAn" Member="ChiTietPhuThuMonAns" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="ChiTietPhuThuMonAn" />
+      <Association Name="PhuThu_ChiTietPhuThuNuoc" Member="ChiTietPhuThuNuocs" ThisKey="MaPhuThu" OtherKey="MaPhuThu" Type="ChiTietPhuThuNuoc" />
+      <Association Name="HoaDon_PhuThu" Member="HoaDon" ThisKey="MaHoaDon" OtherKey="MaHoaDon" Type="HoaDon" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RefreshToken" Member="RefreshTokens">
+    <Type Name="RefreshToken">
+      <Column Name="Token" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StrTokenIDToken" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="JwtID" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsRevoked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ExpireAt" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="NguoiDung_RefreshToken" Member="NguoiDung" ThisKey="userName" OtherKey="userName" Type="NguoiDung" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Token_RefreshToken" Member="Token1" ThisKey="StrTokenIDToken" OtherKey="IDToken" Type="Token" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sanh" Member="Sanhs">
+    <Type Name="Sanh">
+      <Column Name="MaSanh" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSanh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SucChuaToiThieu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SucChuaToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Sanh_LichSanhTiec" Member="LichSanhTiecs" ThisKey="MaSanh" OtherKey="MaSanh" Type="LichSanhTiec" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Token" Member="Tokens">
+    <Type Name="Token">
+      <Column Name="IDToken" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessToken" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="RefreshToken" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Token_AccessToken" Member="AccessTokens" ThisKey="IDToken" OtherKey="StrTokenIDToken" Type="AccessToken" />
+      <Association Name="Token_RefreshToken" Member="RefreshTokens" ThisKey="IDToken" OtherKey="StrTokenIDToken" Type="RefreshToken" />
+    </Type>
+  </Table>
+</Database>
